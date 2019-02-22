@@ -2,7 +2,7 @@ package algorithms
 
 import (
 	"testing"
-	"fmt"
+	"reflect"
 )
 
 func TestPermutationNums(t *testing.T)  {
@@ -15,7 +15,10 @@ func TestPermutationNums(t *testing.T)  {
 	}
 	for i, test := range tests {
 		ret := permutationNums(test.nums, test.n)
-		fmt.Println(ret)
-		t.Logf("test%d pass", i)
+		if reflect.DeepEqual(ret, test.exp) {
+			t.Logf("test%d pass!", i)
+		}else{
+			t.Fatalf("test%d failed, expect %v, but got %v", i, test.exp, ret)
+		}
 	}
 }
